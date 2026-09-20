@@ -19,7 +19,14 @@ addTask.addEventListener("click", function(){
     taskLi.textContent = task;
     taskLi.prepend(checkbox);
 
-    taskLi.addEventListener("click", function(){
+    const delButton = document.createElement("button");
+    delButton.textContent = "Delete";
+    taskLi.appendChild(delButton);
+    delButton.addEventListener("click", function(){
+        taskLi.remove();
+    })
+
+    taskLi.addEventListener("change", function(){
         if(checkbox.checked){
             taskLi.style.textDecoration = "line-through";
         }
