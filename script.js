@@ -13,8 +13,22 @@ addTask.addEventListener("click", function(){
     const task = taskInput.value;
     console.log(task);
     const taskLi = document.createElement("li");
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
     taskLi.textContent = task;
+    taskLi.prepend(checkbox);
+
+    taskLi.addEventListener("click", function(){
+        if(checkbox.checked){
+            taskLi.style.textDecoration = "line-through";
+        }
+        else{
+            taskLi.style.textDecoration = "none";
+        }
+    })
+
     taskList.appendChild(taskLi);
     taskInput.value = "";
-    };  
+    }
 });
