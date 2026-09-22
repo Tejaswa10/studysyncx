@@ -53,9 +53,37 @@ button:active{
 #taskInput:hover{
     transform: scale(1.05);
 }
+#darkMode{
+    background-color: black;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    font-size: 22px;
+}
+.dark-mode{
+    background: #121212;
+    color: white;
+}
+.dark-mode button{
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.dark-mode #taskInput{
 
+    background: rgba(255, 255, 255, 0.1);
 
+    border: 1px solid rgba(255, 255, 255, 0.2);
 
+    color: white;
+
+}
+.dark-mode #taskInput::placeholder{
+
+    color: white;
+
+}
 
 
 #taskInput{

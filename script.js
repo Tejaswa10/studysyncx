@@ -2,6 +2,19 @@ const addTask = document.querySelector("#addTask");
 const taskInput = document.querySelector("#taskInput");
 const taskList = document.querySelector("#taskList");
 let inputShown = false;
+const darkMode = document.querySelector("#darkMode");
+const body = document.querySelector("body");
+
+darkMode.addEventListener("click", function(){
+    body.classList.toggle("dark-mode");
+
+    if(body.classList.contains("dark-mode")){
+        darkMode.textContent = "☀️";
+    }
+    else{
+        darkMode.textContent = "🌙";
+    }
+});
 
 
 addTask.addEventListener("click", function(){
