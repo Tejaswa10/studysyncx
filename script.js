@@ -11,7 +11,11 @@ addTask.addEventListener("click", function(){
     }
     else{
     const task = taskInput.value;
-    console.log(task);
+    
+    if(task === ""){
+        return;
+    }
+
     const taskLi = document.createElement("li");
 
     const checkbox = document.createElement("input");
@@ -20,6 +24,7 @@ addTask.addEventListener("click", function(){
     taskLi.prepend(checkbox);
 
     const delButton = document.createElement("button");
+    delButton.className = "del-button";
     delButton.textContent = "Delete";
     taskLi.appendChild(delButton);
     delButton.addEventListener("click", function(){
