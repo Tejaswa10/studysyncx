@@ -4,6 +4,7 @@ const taskList = document.querySelector("#taskList");
 let inputShown = false;
 const darkMode = document.querySelector("#darkMode");
 const body = document.querySelector("body");
+let tasks = [];
 
 darkMode.addEventListener("click", function(){
     body.classList.toggle("dark-mode");
@@ -29,6 +30,35 @@ addTask.addEventListener("click", function(){
         return;
     }
 
+    createTask(task, false);
+
+    tasks.push({
+    text: task,
+    completed: false
+    });
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    taskInput.value = "";
+    }
+});
+
+taskInput.addEventListener("keydown", function(event){
+    if(event.key === "Enter"){
+        addTask.click();
+    }
+});
+
+const savedTasks = localStorage.getItem("tasks");
+
+if(savedTasks){
+    tasks = JSON.parse(savedTasks);
+
+    tasks.forEach(function(task){
+        createTask(task.text, task.completed);
+    });
+}
+
+function createTask(task, completed){
     const taskLi = document.createElement("li");
 
     const checkbox = document.createElement("input");
@@ -42,6 +72,11 @@ addTask.addEventListener("click", function(){
     taskLi.appendChild(delButton);
     delButton.addEventListener("click", function(){
         taskLi.remove();
+
+        tasks = tasks.filter(function(item){
+            return item.text !== task;
+        });
+        localStorage.setItem("tasks", JSON.stringify(tasks));
     })
 
     taskLi.addEventListener("change", function(){
@@ -54,6 +89,4 @@ addTask.addEventListener("click", function(){
     })
 
     taskList.appendChild(taskLi);
-    taskInput.value = "";
-    }
-});
+}
