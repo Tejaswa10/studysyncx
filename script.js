@@ -63,6 +63,7 @@ function createTask(task, completed){
 
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
+    checkbox.checked = completed;
     taskLi.textContent = task;
     taskLi.prepend(checkbox);
 
@@ -86,7 +87,18 @@ function createTask(task, completed){
         else{
             taskLi.style.textDecoration = "none";
         }
+        const currentTask = tasks.find(function(item){
+            return item.text === task;
+        });
+        if(currentTask){
+            currentTask.completed = checkbox.checked;
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+        }
     })
 
     taskList.appendChild(taskLi);
+
+    if(checkbox.checked){
+        taskLi.style.textDecoration = "line-through";
+    }
 }
